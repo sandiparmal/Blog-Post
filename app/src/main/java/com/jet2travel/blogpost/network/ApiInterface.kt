@@ -7,5 +7,5 @@ import retrofit2.http.GET
 
 interface ApiInterface {
     @GET(Constants.BLOG_URL)
-    fun getBlogLists(): Call<List<Blog>>
+    fun getBlogLists(): Call<MutableList<Blog>>
 }

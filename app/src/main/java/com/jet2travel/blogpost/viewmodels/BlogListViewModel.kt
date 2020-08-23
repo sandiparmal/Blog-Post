@@ -10,7 +10,7 @@ import com.jet2travel.blogpost.repository.BlogRepository
 class BlogListViewModel(application: Application) : AndroidViewModel(application) {
 
     // Expose LiveData Facts query so the UI can observe it.
-    fun getBlogListObservable(context: Context): LiveData<List<Blog>> {
+    fun getBlogListObservable(context: Context): LiveData<MutableList<Blog>> {
         //return blogListObservable
         return BlogRepository.getInstance().getBlogList(context)
     }
