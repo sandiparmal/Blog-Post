@@ -6,6 +6,6 @@ data class Blog(
     val createdAt: String,
     val id: String,
     val likes: Int,
-    val media: List<Media>,
-    val user: List<User>
+    val media: List<Media>?,
+    val user: List<User>?
 )

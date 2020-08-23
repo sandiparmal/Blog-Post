@@ -10,4 +10,6 @@ interface ApiInterface {
     @GET(Constants.BLOG_URL)
     fun getBlogLists(@Query("page") page: Int,
                      @Query("limit") limit: Int): Call<MutableList<Blog>>
+
+
 }
