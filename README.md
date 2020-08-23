@@ -24,4 +24,4 @@ Libraries Used
 * [Room](https://developer.android.com/training/data-storage/room) - Database library over SQLite
 
 Screenshots
-![Home](Screenshot.jpg "Home Screen")
+![Home](Screenshot.jpeg "Home Screen")
