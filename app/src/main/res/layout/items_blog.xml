@@ -30,13 +30,13 @@
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/imv_user_profile"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
             android:imageHref="@{user.avatar}"
             app:civ_border_color="#CCC"
             app:civ_border_width="2dp"
             app:layout_constraintStart_toEndOf="@+id/start_vertical_guideline"
-            app:layout_constraintTop_toTopOf="@+id/top_vertical_guideline" />
+            app:layout_constraintTop_toTopOf="@+id/top_horizontal_guideline" />
 
         <TextView
             android:id="@+id/tv_user_name"
@@ -46,18 +46,20 @@
             android:fontFamily="sans-serif"
             android:text="@{String.valueOf(user.name)}"
             android:textSize="16sp"
+            android:layout_marginTop="8dip"
             android:textStyle="bold"
             app:layout_constraintLeft_toRightOf="@+id/imv_user_profile"
-            app:layout_constraintTop_toBottomOf="@+id/top_vertical_guideline" />
+            app:layout_constraintTop_toBottomOf="@+id/top_horizontal_guideline" />
 
         <TextView
             android:id="@+id/tv_user_designation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="12dip"
+            android:layout_marginTop="4dip"
             android:fontFamily="sans-serif"
-            android:text="@{String.valueOf(user.designation)}"
             android:textSize="16sp"
+            android:text="@{String.valueOf(user.designation)}"
             app:layout_constraintLeft_toRightOf="@+id/imv_user_profile"
             app:layout_constraintTop_toBottomOf="@+id/tv_user_name" />
 
@@ -70,6 +72,8 @@
             android:contentDescription="@string/loading"
             android:imageHref="@{media.image}"
             android:scaleType="fitXY"
+            android:layout_marginStart="8dip"
+            android:layout_marginEnd="8dip"
             android:visibility="@{TextUtils.isEmpty(media.image) ? View.GONE : View.VISIBLE}"
             app:layout_constraintLeft_toRightOf="@+id/start_vertical_guideline"
             app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
@@ -81,6 +85,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dip"
             android:text="@{blog.content}"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="start"
             android:visibility="@{TextUtils.isEmpty(blog.content) ? View.GONE : View.VISIBLE}"
             app:layout_constraintStart_toEndOf="@+id/start_vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/imv_media_image" />
@@ -91,6 +98,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dip"
             android:text="@{media.title}"
+            android:fontFamily="sans-serif"
+            android:textSize="16sp"
+            android:gravity="start"
             android:visibility="@{TextUtils.isEmpty(blog.content) ? View.GONE : View.VISIBLE}"
             app:layout_constraintLeft_toRightOf="@+id/start_vertical_guideline"
             app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
@@ -103,6 +113,9 @@
             android:text="@{String.valueOf(media.url)}"
             android:visibility="@{TextUtils.isEmpty(media.url) ? View.GONE : View.VISIBLE}"
             android:autoLink="web"
+            android:fontFamily="sans-serif"
+            android:textSize="12sp"
+            android:gravity="start"
             app:layout_constraintLeft_toRightOf="@+id/start_vertical_guideline"
             app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/tv_media_title" />
@@ -130,23 +143,23 @@
             app:layout_constraintTop_toBottomOf="@+id/tv_article_url" />
 
         <View
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="1dip"
             android:layout_marginTop="8dip"
             android:background="#CCC"
-            app:layout_constraintEnd_toStartOf="@+id/end_vertical_guideline"
-            app:layout_constraintStart_toStartOf="@+id/start_vertical_guideline"
+            app:layout_constraintStart_toEndOf="@+id/start_vertical_guideline"
+            app:layout_constraintEnd_toEndOf="@+id/end_vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/tv_like" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/top_vertical_guideline"
+            android:id="@+id/top_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             app:layout_constraintGuide_begin="20dp" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/bottom_vertical_guideline"
+            android:id="@+id/bottom_horizontal_guideline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
