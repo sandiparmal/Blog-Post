@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">Blog Post</string>
     <string name="loading">Loading</string>
+
+    <string name="error">Something went wrong!</string>
+    <string name="no_more_results">No more result Found</string>
 </resources>

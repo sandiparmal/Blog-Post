@@ -29,21 +29,21 @@ open class BlogRepository {
 
     // If network is available then load updated data from server and saved it in SQLite database.
     // If network is not available then will load data from SQLite database
-    fun getBlogList(context: Context): LiveData<MutableList<Blog>> {
+    fun getBlogList(context: Context, pageNo : Int, numberOfRecords : Int): LiveData<MutableList<Blog>> {
         val data = MutableLiveData<MutableList<Blog>>()
 
         // data is present in db but network is present so will load updated data
         Log.d(Constants.APP_TAG, "get data response from Server: $data")
-        data.value = fetchListOfBlogsFromServer(data)
+        data.value = fetchListOfBlogsFromServer(data, pageNo, numberOfRecords)
 
         return data
     }
 
     // Load data from server and saved it in database, delete if any available in db
     private fun fetchListOfBlogsFromServer(
-        data: MutableLiveData<MutableList<Blog>>
+        data: MutableLiveData<MutableList<Blog>>, pageNo: Int, numberOfRecords: Int
     ): MutableList<Blog>? {
-        ApiClient.instance.getBlogLists().enqueue(object : Callback<MutableList<Blog>> {
+        ApiClient.instance.getBlogLists(pageNo, numberOfRecords).enqueue(object : Callback<MutableList<Blog>> {
             override fun onResponse(call: Call<MutableList<Blog>>, response: Response<MutableList<Blog>>) {
                 Log.d(Constants.APP_TAG, "data response from server: " + response.body().toString())
                 try {
