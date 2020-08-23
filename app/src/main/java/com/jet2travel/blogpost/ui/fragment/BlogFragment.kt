@@ -41,14 +41,6 @@ class BlogFragment : Fragment() {
         mBinding =
             DataBindingUtil.inflate(inflater, R.layout.fragment_blog_list, container, false)
 
-        // Recycler Adapter
-        blogAdapter = BlogAdapter(blogList)
-        mBinding.recyclerBlogList.adapter = blogAdapter
-
-        //Bind the recyclerview and Add a LayoutManager
-        mBinding.recyclerBlogList.layoutManager =
-            LinearLayoutManager(context, RecyclerView.VERTICAL, false)
-
         return mBinding.root
     }
 
@@ -82,8 +74,15 @@ class BlogFragment : Fragment() {
         if (blogList.size > 0) {
             mBinding.recyclerBlogList.setItemViewCacheSize(blogList.size)
             this.blogList = blogList
+
+            // Recycler Adapter
+            blogAdapter = BlogAdapter(blogList)
+            mBinding.recyclerBlogList.adapter = blogAdapter
+
+            //Bind the recyclerview and Add a LayoutManager
+            mBinding.recyclerBlogList.layoutManager =
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false)
             // clear list, add new items in list and refresh it using notifyDataSetChanged
-            blogAdapter?.notifyDataSetChanged()
         }
     }
 

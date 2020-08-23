@@ -22,6 +22,11 @@ android {
         }
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     dataBinding {
         enabled = true
     }
@@ -47,6 +52,9 @@ dependencies {
 
     // Picasso
     implementation "com.squareup.picasso:picasso:2.71828"
+
+    // circular imageview
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
