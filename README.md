@@ -25,3 +25,7 @@ Libraries Used
 
 Screenshots
 ![Home](Screenshot.jpeg "Home Screen")
+
+
+# Know issue
+Items or images are getting repetative while scrolling(will find solution on this and will imaplement it)
