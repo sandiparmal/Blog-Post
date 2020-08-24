@@ -1,4 +1,4 @@
-package com.pritam.listapp.database
+package com.jet2travel.blogpost.database
 
 import androidx.room.Dao
 import androidx.room.Insert

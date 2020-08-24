@@ -3,7 +3,6 @@ package com.jet2travel.blogpost.database
 import android.util.Log
 import com.jet2travel.blogpost.database.model.Blog
 import com.jet2travel.blogpost.utils.Constants
-import com.pritam.listapp.database.AppDatabase
 
 // Database cache which will call respective dao methods
 class DatabaseCache(appDatabase: AppDatabase) {
