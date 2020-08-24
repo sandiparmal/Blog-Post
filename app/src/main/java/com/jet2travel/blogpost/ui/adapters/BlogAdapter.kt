@@ -11,6 +11,7 @@ import com.jet2travel.blogpost.databinding.ItemsBlogBinding
 import com.jet2travel.blogpost.databinding.LoadingItemBinding
 
 
+
 class BlogAdapter(private val blogList: MutableList<Blog?>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
@@ -48,6 +49,8 @@ class BlogAdapter(private val blogList: MutableList<Blog?>) :
         } else if (holder is LoadingViewHolder) {
             holder.binding.progressBar.isIndeterminate = true
         }
+
+        holder.itemView.tag = blogList[position]
     }
 
 
@@ -56,16 +59,18 @@ class BlogAdapter(private val blogList: MutableList<Blog?>) :
         return blogList.size
     }
 
+    override fun getItemId(position: Int): Long {
+        return position.toLong()
+    }
+
     override fun getItemViewType(position: Int): Int {
         return if (blogList[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
     }
 
     //Adding loading item
     fun addLoadingView() {
-//        Handler().post {
         blogList.add(null)
         notifyItemInserted(blogList.size - 1)
-//        }
     }
 
     //Remove loading item

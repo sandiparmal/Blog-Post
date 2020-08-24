@@ -1,5 +1,6 @@
 package com.jet2travel.blogpost.ui.adapters
 
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.jet2travel.blogpost.R
@@ -11,11 +12,14 @@ class CustomBindingAdapter {
         @BindingAdapter("android:imageHref")
         @JvmStatic
         fun loadImage(factImageView: ImageView, imageHref: String?) {
-            if (imageHref != "") {
+            if (!imageHref.isNullOrEmpty()) {
                 Picasso.get()
                     .load(imageHref)
                     .placeholder(R.drawable.no_image_placeholder)
                     .into(factImageView)
+                factImageView.visibility = View.VISIBLE
+            } else {
+                factImageView.visibility = View.GONE
             }
         }
     }

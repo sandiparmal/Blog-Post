@@ -74,7 +74,6 @@
             android:scaleType="fitXY"
             android:layout_marginStart="8dip"
             android:layout_marginEnd="8dip"
-            android:visibility="@{TextUtils.isEmpty(media.image) ? View.GONE : View.VISIBLE}"
             app:layout_constraintLeft_toRightOf="@+id/start_vertical_guideline"
             app:layout_constraintRight_toLeftOf="@+id/end_vertical_guideline"
             app:layout_constraintTop_toBottomOf="@+id/imv_user_profile" />

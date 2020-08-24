@@ -21,6 +21,7 @@ import com.jet2travel.blogpost.ui.adapters.EndlessRecyclerOnScrollListener
 import com.jet2travel.blogpost.utils.Resource
 import com.jet2travel.blogpost.utils.Status
 import com.jet2travel.blogpost.viewmodels.BlogListViewModel
+import okhttp3.internal.addHeaderLenient
 
 
 class BlogFragment : Fragment() {
@@ -115,7 +116,7 @@ class BlogFragment : Fragment() {
 
 
     private fun updateUIData(bList: MutableList<Blog>) {
-        //mBinding.recyclerBlogList.setItemViewCacheSize(blogList.size)
+        mBinding.recyclerBlogList.setItemViewCacheSize(blogList.size)
         if (pageno == 1) {
             blogList.clear()
 
