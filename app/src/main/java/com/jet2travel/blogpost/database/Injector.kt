@@ -1,7 +1,6 @@
 package com.jet2travel.blogpost.database
 
 import android.content.Context
-import com.pritam.listapp.database.AppDatabase
 
 // Dependency Injector for DatabaseCache
 object Injector {
