@@ -1,6 +1,8 @@
 package com.jet2travel.blogpost.ui.adapters
 
+import android.content.Context
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
@@ -11,15 +13,16 @@ import com.jet2travel.blogpost.databinding.ItemsBlogBinding
 import com.jet2travel.blogpost.databinding.LoadingItemBinding
 
 
-
 class BlogAdapter(private val blogList: MutableList<Blog?>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val VIEW_TYPE_ITEM = 0
     private val VIEW_TYPE_LOADING = 1
+    private lateinit var mContext: Context
 
     //this method is returning the view or data binding for each item in the list
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+        mContext = parent.context
         if (viewType === VIEW_TYPE_ITEM) {
             val binding = DataBindingUtil.inflate<ItemsBlogBinding>(
                 LayoutInflater.from(parent.context), R.layout.items_blog,
@@ -39,18 +42,17 @@ class BlogAdapter(private val blogList: MutableList<Blog?>) :
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is BlogViewHolder) {
             holder.binding.blog = blogList[position]
-            if (blogList[position]?.user?.size!! > 0) {
+            Log.d("--> $position", blogList[position].toString())
+            if (blogList[position] != null && blogList[position]?.user != null && blogList[position]?.user?.size!! > 0) {
                 holder.binding.user = blogList[position]?.user!![0]
             }
-            if (blogList[position]?.media?.size!! > 0) {
+            if (blogList[position] != null && blogList[position]?.media != null && blogList[position]?.media?.size!! > 0) {
                 holder.binding.media = blogList[position]?.media!![0]
             }
             holder.binding.executePendingBindings()
         } else if (holder is LoadingViewHolder) {
             holder.binding.progressBar.isIndeterminate = true
         }
-
-        holder.itemView.tag = blogList[position]
     }
 
 
@@ -59,18 +61,16 @@ class BlogAdapter(private val blogList: MutableList<Blog?>) :
         return blogList.size
     }
 
-    override fun getItemId(position: Int): Long {
-        return position.toLong()
-    }
-
     override fun getItemViewType(position: Int): Int {
         return if (blogList[position] == null) VIEW_TYPE_LOADING else VIEW_TYPE_ITEM
     }
 
     //Adding loading item
     fun addLoadingView() {
+//        Handler().post {
         blogList.add(null)
         notifyItemInserted(blogList.size - 1)
+//        }
     }
 
     //Remove loading item

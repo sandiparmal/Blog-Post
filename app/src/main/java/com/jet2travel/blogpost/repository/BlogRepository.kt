@@ -54,14 +54,14 @@ open class BlogRepository {
                 data.value = fetchListOfBlogsFromServer(pageNo, data, databaseCache, context)
             } else {
                 // data is present in db but network is not present so will data from db
-                Log.d(Constants.APP_TAG, "get data response from database: $data")
-
                 var vbody = databaseCache.getAllBlogs()
+                Log.d(Constants.APP_TAG, "get data response from database: ${vbody.toString()}")
+
                 val rows = mutableListOf<Blog>()
                 vbody.forEach { blog ->
                     try{
-                        val user: Array<User> = gson.fromJson(blog.user, Array<User>::class.java)
-                        val media: Array<Media> = gson.fromJson(blog.media, Array<Media>::class.java)
+                        val user: Array<User> = gson.fromJson(blog.user.toString(), Array<User>::class.java)
+                        val media: Array<Media> = gson.fromJson(blog.media.toString(), Array<Media>::class.java)
                         rows.add(
                             Blog(
                                 blog.comments,
@@ -74,6 +74,7 @@ open class BlogRepository {
                             )
                         )
                     } catch (e: Exception){
+                        e.printStackTrace()
                         rows.add(
                             Blog(
                                 blog.comments,
@@ -121,6 +122,8 @@ open class BlogRepository {
                         val rows = mutableListOf<com.jet2travel.blogpost.database.model.Blog>()
                         val vbody = body.toMutableList()
                         vbody.forEach { blog ->
+                            var userString = gson.toJson(blog.user)
+                            var mediaString = gson.toJson(blog.media)
                             rows.add(
                                 com.jet2travel.blogpost.database.model.Blog(
                                     blog.id.toInt(),
@@ -128,8 +131,8 @@ open class BlogRepository {
                                     blog.content,
                                     blog.createdAt,
                                     blog.likes,
-                                    blog.media.toString(),
-                                    blog.user.toString()
+                                    mediaString,
+                                    userString
                                 )
                             )
                         }

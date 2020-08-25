@@ -12,15 +12,21 @@ class CustomBindingAdapter {
         @BindingAdapter("android:imageHref")
         @JvmStatic
         fun loadImage(factImageView: ImageView, imageHref: String?) {
-            if (!imageHref.isNullOrEmpty()) {
-                Picasso.get()
-                    .load(imageHref)
-                    .placeholder(R.drawable.no_image_placeholder)
-                    .into(factImageView)
+            try{
+                if (!imageHref.isNullOrEmpty()) {
+                    Picasso.get()
+                        .load(imageHref)
+                        .placeholder(R.drawable.no_image_placeholder)
+                        .into(factImageView)
+                    factImageView.visibility = View.VISIBLE
+                } else {
+                    factImageView.visibility = View.GONE
+                }
+            } catch (e: Exception){
+                factImageView.setImageResource(R.drawable.no_image_placeholder)
                 factImageView.visibility = View.VISIBLE
-            } else {
-                factImageView.visibility = View.GONE
             }
+
         }
     }
 }
